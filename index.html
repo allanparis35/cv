@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paris Allan - Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #7e94f4 0%, #764ba2 100%);
+            background-image: url('images.jpg');
+            background-repeat: no-repeat;
+            background-attachment: fixed; 
+            background-size: 100% 100%;
+            color: black;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        nav {
+            background: white;
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            border-radius: 15px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #667eea;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            padding: 10px 20px;
+            border-radius: 25px;
+        }
+
+        nav a:hover {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .page {
+            display: none;
+            animation: fadeIn 5s ease;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero {
+            background: white;
+            border-radius: 20px;
+            padding: 60px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            margin-bottom: 30px;
+        }
+
+        .profile-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            margin: 0 auto 30px;
+            border: 5px solid #667eea;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        h1 {
+            font-size: 3rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(102, 126, 234, 0.6);
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            color: #667eea;
+            font-size: 2.2rem;
+            margin-bottom: 25px;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 15px;
+        }
+
+        h3 {
+            color: #764ba2;
+            font-size: 1.5rem;
+            margin: 25px 0 15px 0;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px;
+            background: #f8f9ff;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+
+        .info-item strong {
+            color: #667eea;
+        }
+
+        .experience-item, .education-item {
+            background: linear-gradient(135deg, #f8f9ff 0%, #e8ebff 100%);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            border-left: 5px solid #667eea;
+        }
+
+        .experience-item h3, .education-item h3 {
+            color: #667eea;
+            margin-top: 0;
+        }
+
+        .date {
+            color: #764ba2;
+            font-weight: 600;
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .skill-item {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .skill-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.5);
+        }
+
+        .interests-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .interest-item {
+            background: #f8f9ff;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            border: 2px solid #667eea;
+            transition: all 0.3s ease;
+        }
+
+        .interest-item:hover {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            transform: translateY(-5px);
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        li:before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding: 30px 20px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            nav ul {
+                gap: 15px;
+            }
+
+            .card {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <ul>
+                <li><a href="#" onclick="showPage('accueil')">Accueil</a></li>
+                <li><a href="#" onclick="showPage('parcours')">Parcours</a></li>
+                <li><a href="#" onclick="showPage('experiences')">Expériences</a></li>
+                <li><a href="#" onclick="showPage('competences')">Compétences</a></li>
+                <li><a href="#" onclick="showPage('centres')">Centres d'intérêts</a></li>
+            </ul>
+        </nav>
+
+        <!-- PAGE ACCUEIL -->
+        <div id="accueil" class="page active">
+            <div class="hero">
+                <img src="photo.jpg" width="500" height="333">
+                <h1>PARIS ALLAN</h1>
+                <p class="subtitle">Étudiant en première année d'informatique</p>
+                <a href="#" class="download-btn" onclick="downloadCV()">📥 Télécharger mon CV</a>
+            </div>
+
+            <div class="card">
+                <h2>À propos de moi</h2>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <span>📅</span>
+                        <div><strong>Né le:</strong> 22 septembre 2007</div>
+                    </div>
+                    <div class="info-item">
+                        <span>📧</span>
+                        <div><strong>Email:</strong> allanparis8@gmail.com</div>
+                    </div>
+                    <div class="info-item">
+                        <span>📍</span>
+                        <div><strong>Adresse:</strong> Le Petit Fougeray, 35320</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>Mon Profil</h2>
+                <div class="skills-grid">
+                    <div class="skill-item">Motivé</div>
+                    <div class="skill-item">Déterminé</div>
+                    <div class="skill-item">Sens du relationnel</div>
+                    <div class="skill-item">Ouverture d'esprit</div>
+                    <div class="skill-item">Ponctualité</div>
+                    <div class="skill-item">Travail d'équipe</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAGE PARCOURS -->
+        <div id="parcours" class="page">
+            <div class="card">
+                <h2>🎓 Parcours Scolaire</h2>
+                
+                <div class="education-item">
+                    <h3>Études actuelles</h3>
+                    <p class="date">2023-2025</p>
+                    <p><strong>Première et terminal STI2D</strong> (option sciences informatiques et numériques)</p>
+                    <p>Lycée Bréquigny, Rennes (35)</p>
+                </div>
+
+                <div class="education-item">
+                    <h3>Baccalauréat</h3>
+                    <p class="date">2022-2023</p>
+                    <p><strong>Baccalauréat général</strong></p>
+                    <p>Lycée Jean Brito, Bain de Bretagne (35)</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAGE EXPERIENCES -->
+        <div id="experiences" class="page">
+            <div class="card">
+                <h2>💼 Expériences Professionnelles</h2>
+                
+                <div class="experience-item">
+                    <h3>Stage dans l'entreprise Lactalis</h3>
+                    <p class="date">2023 - 5 jours</p>
+                <ul>
+                        <li>Stage en laboratoire pour vérifier la comestibilité de différents aliments</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <h3>Stage dans la boucherie l'Étal des Saveurs</h3>
+                    <p class="date">2022 - 5 jours</p>
+                    <ul>
+                        <li>Vente</li>
+                        <li>Mise en rayon</li>
+                        <li>Vente des produits</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <h3>Stage dans la crêperie De l'Ise</h3>
+                    <p class="date">2022 - 5 jours</p>
+                    <ul>
+                        <li>Préparation des plats</li>
+                        <li>Plonge</li>
+                        <li>Service - prises des commandes</li>
+                        <li>Mise en place</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>🤝 Engagement Personnel</h2>
+                <div class="experience-item">
+                    <h3>Cours d'escalade à titre bénévole</h3>
+                    <p class="date">2023 - toute l'année</p>
+                    <p>Encadrement de jeunes débutants</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAGE COMPETENCES -->
+        <div id="competences" class="page">
+            <div class="card">
+                <h2>🌍 Compétences Linguistiques</h2>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <span>🇬🇧</span>
+                        <div><strong>Anglais:</strong> A2</div>
+                    </div>
+                    <div class="info-item">
+                        <span>🇪🇸</span>
+                        <div><strong>Espagnole:</strong> A2+</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>💻 Compétences Numériques</h2>
+                <div class="skills-grid">
+                    <div class="skill-item">PIX - Certification</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>🚗 Autres Compétences</h2>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <span>🚗</span>
+                        <div><strong>Permis voiture</strong></div>
+                    </div>
+                    <div class="info-item">
+                        <span>🏥</span>
+                        <div><strong>Baccalauréat mention assez bien</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAGE CENTRES D'INTERETS -->
+        <div id="centres" class="page">
+            <div class="card">
+                <h2>🎯 Centres d'Intérêts</h2>
+                
+                <h3>🏃‍♂️ Sport</h3>
+                <div class="interests-grid">
+                    <div class="interest-item">Escalade</div>
+                    <div class="interest-item">Badminton</div>
+                    <div class="interest-item">Volley</div>
+                </div>
+
+                <h3>🍳 Cuisine</h3>
+                <div class="interests-grid">
+                    <div class="interest-item">Passion culinaire</div>
+                </div>
+
+                <h3>📚 Lecture</h3>
+                <div class="interests-grid">
+                    <div class="interest-item">Livres variés</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showPage(pageId) {
+            // Cacher toutes les pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Afficher la page sélectionnée
+            document.getElementById(pageId).classList.add('active');
+            
+            // Scroll en haut de la page
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+
+        function downloadCV() {
+            alert('Fonctionnalité de téléchargement du CV\n\nPour implémenter cette fonctionnalité, vous devrez:\n1. Créer un fichier PDF de votre CV\n2. L\'héberger sur votre serveur\n3. Lier le bouton à ce fichier');
+            // Dans un vrai site, vous utiliseriez:
+            // window.location.href = 'chemin/vers/votre/cv.pdf';
+        }
+    </script>
+</body>
+</html>
