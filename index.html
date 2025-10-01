@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Paris Allan - Portfolio</title>
@@ -9,7 +9,6 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            
         }
 
         body {
@@ -18,7 +17,7 @@
             background-image: url('furry.jpg');
             background-repeat: no-repeat;
             background-attachment: fixed; 
-            background-size: 100% 100%;
+            background-size: cover;
             color: black;
             min-height: 100vh;
         }
@@ -67,7 +66,7 @@
 
         .page {
             display: none;
-            animation: fadeIn 3s ease;
+            animation: fadeIn 0.5s ease;
         }
 
         .page.active {
@@ -92,6 +91,14 @@
             text-align: center;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
             margin-bottom: 30px;
+        }
+
+        .hero img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            margin-bottom: 20px;
         }
 
         .profile-img {
@@ -222,6 +229,11 @@
             transition: all 0.3s ease;
         }
 
+        .skill-item a {
+            color: white;
+            text-decoration: none;
+        }
+
         .skill-item:hover {
             transform: scale(1.05);
             box-shadow: 0 10px 30px rgba(102, 126, 234, 0.5);
@@ -268,7 +280,28 @@
             font-weight: bold;
         }
 
+        /* MEDIA QUERIES POUR MOBILE */
         @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+
+            nav {
+                margin-bottom: 15px;
+                border-radius: 10px;
+                padding: 15px 0;
+            }
+
+            nav ul {
+                gap: 10px;
+                padding: 0 10px;
+            }
+
+            nav a {
+                font-size: 0.9rem;
+                padding: 8px 12px;
+            }
+
             .hero {
                 padding: 30px 20px;
             }
@@ -277,12 +310,78 @@
                 font-size: 2rem;
             }
 
-            nav ul {
-                gap: 15px;
+            h2 {
+                font-size: 1.8rem;
+            }
+
+            h3 {
+                font-size: 1.3rem;
+            }
+
+            .subtitle {
+                font-size: 1.1rem;
             }
 
             .card {
-                padding: 25px;
+                padding: 20px;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .interests-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .download-btn {
+                padding: 12px 30px;
+                font-size: 1rem;
+            }
+
+            .profile-img {
+                width: 120px;
+                height: 120px;
+            }
+
+            .experience-item, .education-item {
+                padding: 20px;
+            }
+        }
+
+        /* MEDIA QUERIES POUR TRÈS PETITS ÉCRANS */
+        @media (max-width: 480px) {
+            nav ul {
+                gap: 8px;
+            }
+
+            nav a {
+                font-size: 0.85rem;
+                padding: 6px 10px;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .hero {
+                padding: 20px 15px;
+            }
+
+            .card {
+                padding: 15px;
+            }
+
+            .interests-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -302,13 +401,13 @@
         <!-- PAGE ACCUEIL -->
         <div id="accueil" class="page active">
             <div class="hero">
-                <img src="photo.jpg" width="500" height="333">
+                <img src="photo.jpg" alt="Photo de Paris Allan">
                 <h1>PARIS ALLAN</h1>
                 <div class="skill-item"><a href="https://youtu.be/xvFZjo5PgG0?si=Q7rnNqr5iFbOCVHD">clique dessus mon amour</a></div>
                 <br />
                 <br />
                 <div class="skill-item"><a href="https://horse-cum.net/">clique sur celui la aussi</a></div>
-                </div>
+            </div>
             <div class="card">
                 <h2>À propos de moi</h2>
                 <div class="info-grid">
@@ -369,7 +468,7 @@
                 <div class="experience-item">
                     <h3>Stage dans l'entreprise Lactalis</h3>
                     <p class="date">2023 - 5 jours</p>
-                <ul>
+                    <ul>
                         <li>Stage en laboratoire pour vérifier la comestibilité de différents aliments</li>
                     </ul>
                 </div>
@@ -481,12 +580,6 @@
             
             // Scroll en haut de la page
             window.scrollTo({top: 0, behavior: 'smooth'});
-        }
-
-        function downloadCV() {
-            alert('Fonctionnalité de téléchargement du CV\n\nPour implémenter cette fonctionnalité, vous devrez:\n1. Créer un fichier PDF de votre CV\n2. L\'héberger sur votre serveur\n3. Lier le bouton à ce fichier');
-            // Dans un vrai site, vous utiliseriez:
-            // window.location.href = 'chemin/vers/votre/cv.pdf';
         }
     </script>
 </body>
